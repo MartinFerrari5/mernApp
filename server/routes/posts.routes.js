@@ -78,6 +78,7 @@ router.put("/tasks/:id", async (req, res) => {
         ...newData,
         image: imagen
       }
+      
       await fs.remove(req.files.image.tempFilePath)
     }
     

@@ -63,7 +63,7 @@ function TaskItem(props) {
       <div>
         {props.image && (
           <img
-            className="mt-2"
+            className="mt-2 object-cover h-44 w-full object-center"
             src={props.image ? props.image.url : ""}
             alt="img"
           />

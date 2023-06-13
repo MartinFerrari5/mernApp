@@ -4,11 +4,12 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate, useParams } from "react-router";
 import * as Yup from 'yup';
 import { Link } from "react-router-dom";
+import {AiOutlineLoading3Quarters as Spinner} from "react-icons/ai"
 function CreateTask() {
   const violet = `p-2 bg-violet-900 rounded-md font-semibold text-lg
-  hover:bg-violet-800 hover:shadow-md hover:shadow-violet-700`
+  hover:bg-violet-800 hover:shadow-md hover:shadow-violet-700 disabled:bg-gray-500 disabled:cursor-not-allowed disabled:shadow-none`
   const green = `p-2 bg-green-900 rounded-md font-semibold text-lg
-  hover:bg-green-800 hover:shadow-md hover:shadow-green-700`
+  hover:bg-green-800 hover:shadow-md hover:shadow-green-700 disabled:bg-gray-500 disabled:cursor-not-allowed disabled:shadow-none`
   const urlSearchParams = new URLSearchParams(window.location.search);
   const id = useParams().id;
   const navigate = useNavigate()
@@ -38,8 +39,8 @@ if(id){
  
   return (
     <div className="m-auto flex justify-center w-11/12 md:w-3/4 lg:w-2/4">
-      
-      <Formik
+        
+      <Formik 
         initialValues={newPost}
         validationSchema={Yup.object({
           title: Yup.string().required("Title required"),
@@ -53,15 +54,20 @@ if(id){
             
           }
           
+          actions.setSubmitting(false)
           navigate("/")
         }}
         enableReinitialize
       >
-        {({ handleSubmit, setFieldValue }) => (
+        {({ handleSubmit, setFieldValue, isSubmitting }) => (
           <Form
+          
             className="text-white bg-gray-800 p-3 w-4/5 overflow-hidden m-auto"
             onSubmit={handleSubmit}
           >
+            <div className="text-center">
+              {isSubmitting && <Spinner className="animate-spin w-12 h-12 m-auto"/>}
+            </div>
             <div className="flex justify-between ">
               <p>New Post</p>
               <p>
@@ -106,6 +112,7 @@ if(id){
               <button
                 type="submit"
                 className= {violet}
+                disabled={isSubmitting}
               >
                 Save
               </button>
@@ -113,6 +120,7 @@ if(id){
               <button
                 type="submit"
                 className= {green}
+                disabled={isSubmitting}
               >
                 Update
               </button>
