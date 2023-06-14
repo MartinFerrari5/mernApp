@@ -28,6 +28,9 @@ app.use(postsRoutes)
 
 // CODIGO COMPILADOR QUE SIRVE EL BACKEND
 app.use(express.static(join(__dirname, "../client/dist")))
+app.get("*", (req,res)=>{
+  res.sendFile(join(__dirname, "../client/build/index.html"))
+})
 app.listen(PORT, () => {
   console.log("Listening to port " + PORT);
 });
