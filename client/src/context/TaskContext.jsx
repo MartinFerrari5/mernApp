@@ -80,7 +80,7 @@ const TaskContextProvider = (props) =>{
     }
     useEffect(()=>{
         const fetchData = async ()=> {
-            const response = await axios.get("http://localhost:3000/api");
+            const response = await axios.get("https://node-mern-qnul.onrender.com/api");
             // const result = await response.json()
             // console.log(response)
             setPost(response.data)
