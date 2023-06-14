@@ -10,7 +10,7 @@ import {fileURLToPath} from "url"
 
 const app = express();
  app.use(cors({
-  origin:["http://localhost:5173"]
+  origin:["https://master--adorable-gumption-a94bf5.netlify.app/"]
  }));
 app.use(bodyParser.json());
 app.use(fileUpload({
