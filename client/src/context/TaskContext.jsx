@@ -80,7 +80,12 @@ const TaskContextProvider = (props) =>{
     }
     useEffect(()=>{
         const fetchData = async ()=> {
-            const response = await axios.get("https://node-mern-qnul.onrender.com/api");
+            const response = await axios.get("https://node-mern-qnul.onrender.com/api",{
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    
+                }
+            });
             // const result = await response.json()
             // console.log(response)
             setPost(response.data)
